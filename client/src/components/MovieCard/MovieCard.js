@@ -21,7 +21,7 @@ const MovieCard = ({ movie, onCardSelect }) => {
       </CardMenu>
       <CardMedia component="img"
                  height="350"
-                 image={ movie.image }
+                 image={ movie.posterPath ? movie.posterPath  : ''}
                  alt={ movie.title }/>
       <CardInfo>
         <Typography variant="h6" gutterBottom component="div">
@@ -39,7 +39,7 @@ export default MovieCard;
 
 MovieCard.propTypes = {
   movie: PropsTypes.shape({
-    image: PropsTypes.string.isRequired,
+    posterPath: PropsTypes.string.isRequired,
     title: PropsTypes.string,
     releaseDate: PropsTypes.string
   }).isRequired,

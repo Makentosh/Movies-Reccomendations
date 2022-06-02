@@ -17,7 +17,11 @@ const CardMenu = ({ children, ...props }) => {
 
   return (
     <>
-      <IconButton sx={ { position: 'absolute', top: 5, right: 5, backgroundColor: 'rgba(255, 255, 255, .3)' } }
+      <IconButton sx={ {
+        position: 'absolute',
+        top: 5, right: 5,
+        backgroundColor: 'rgba(255, 255, 255, .3)'
+      } }
                   onClick={ handleClick }>
         <MoreVertIcon/>
       </IconButton>
