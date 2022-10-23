@@ -4,9 +4,12 @@ import { Box, Card, CardContent, CardMedia, MenuItem, Typography } from '@mui/ma
 import CardMenu from '../CardMenu';
 import { formatDate } from '../Tools';
 import { FormattedMessage } from 'react-intl';
+import { useContext } from 'react';
+import { AppContext } from '../../providers/appContext';
 
 
 const MovieCardSelected = ({ movie, onCardDelete }) => {
+  const { state } = useContext(AppContext);
 
   return (
     <Card sx={ { display: 'flex', mb: 2, flexShrink: 0 } }>
@@ -21,7 +24,7 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
             { movie.title }
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            { formatDate(movie.releaseDate) }
+            { formatDate(movie.releaseDate, state.locale) }
           </Typography>
         </CardContent>
         <Box sx={ { p: 2, pt: 0 } }>
