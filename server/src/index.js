@@ -48,7 +48,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
   app.get('/rest', function (req, res) {
 
-    return res.json({ data: `rest ${ process.env } and port` });
+    return res.json({ data: `rest ${ JSON.stringify(process.env) } and port` });
   });
 
   app.get('*', function (req, res) {
