@@ -10,7 +10,7 @@ import { AppContext } from '../../providers/appContext';
 
 const AppRouting = () => {
   const { state } = useContext(AppContext);
-  const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
+  const httpLink = new HttpLink({ uri: `http://localhost:${ process.env.PORT || 80 }/graphql` });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const customHeaders = operation.getContext().hasOwnProperty('headers') ? operation.getContext().headers : {};
 
@@ -32,13 +32,13 @@ const AppRouting = () => {
   return (
     <ApolloProvider client={ client }>
       <I18nProvider locale={ state.locale }>
-          <Routes>
-            <Route path="/" element={ <App/> }>
-              <Route index element={ <Home/> }/>
-              <Route path="settings" element={ <SettingsPage/> }/>
-              <Route path="recommend" element={ <Recommend/> }/>
-            </Route>
-          </Routes>
+        <Routes>
+          <Route path="/" element={ <App/> }>
+            <Route index element={ <Home/> }/>
+            <Route path="settings" element={ <SettingsPage/> }/>
+            <Route path="recommend" element={ <Recommend/> }/>
+          </Route>
+        </Routes>
       </I18nProvider>
     </ApolloProvider>
   );
