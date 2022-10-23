@@ -58,8 +58,8 @@ async function startApolloServer(typeDefs, resolvers) {
 
   const PORT = 80;
 
-  await new Promise(resolve => httpServer.listen({ port: process.env.REACT_APP_PORT || PORT }, resolve));
-  console.log(`🚀 Server ready at http://localhost:${ process.env.REACT_APP_PORT || PORT }${ server.graphqlPath }`);
+  await new Promise(resolve => httpServer.listen({ port: process.env.PORT || PORT }, resolve));
+  console.log(`🚀 Server ready at http://localhost:${ process.env.PORT || PORT }${ server.graphqlPath }`);
 }
 
 startApolloServer(typeDefs, resolvers);
