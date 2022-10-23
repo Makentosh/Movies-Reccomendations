@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropsTypes from 'prop-types';
-import { Card, CardContent, CardMedia, MenuItem, styled, Typography } from '@mui/material';
-import CardMenu from '../CardMenu';
+import { Box, Card, CardContent, CardMedia, styled, Typography } from '@mui/material';
 import { formatDate } from '../Tools';
+import { AddBoxOutlined } from '@mui/icons-material';
 
 const CardInfo = styled(CardContent)(({ theme }) => ( {
   '&:last-child': {
@@ -10,24 +10,50 @@ const CardInfo = styled(CardContent)(({ theme }) => ( {
   }
 } ));
 
-const MovieCard = ({ movie, onCardSelect }) => {
+const PlusIcon = styled(Box)(({ theme }) => ( {
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  opacity: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  background: 'rgba(255, 255, 255, .6)',
+  cursor: 'pointer',
+  '&:hover': {
+    opacity: 1,
+  }
+} ));
 
+const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
   return (
     <Card sx={ { maxWidth: 250, position: 'relative' } }>
-      <CardMenu>
-        <MenuItem onClick={ onCardSelect }>
-          Select
-        </MenuItem>
-      </CardMenu>
-      <CardMedia component="img"
-                 height="350"
-                 image={ movie.posterPath ? movie.posterPath  : ''}
-                 alt={ movie.title }/>
+      <Box sx={ { position: 'relative' } }>
+        <CardMedia
+          component="img"
+          height="250"
+          image={ movie.posterPath }
+          alt={ movie.title }/>
+        { !isPreviewMode &&
+          <PlusIcon onClick={ () => onCardSelect(movie) }>
+            <AddBoxOutlined sx={ { fontSize: 80 } }/>
+          </PlusIcon>
+        }
+
+      </Box>
+
       <CardInfo>
-        <Typography variant="h6" gutterBottom component="div">
+        <Typography variant="h6"
+                    gutterBottom
+                    omponent="div">
           { movie.title }
         </Typography>
-        <Typography variant="subtitle1" gutterBottom component="div">
+        <Typography variant="subtitle1"
+                    gutterBottom
+                    component="div">
           { formatDate(movie.releaseDate) }
         </Typography>
       </CardInfo>
@@ -43,5 +69,6 @@ MovieCard.propTypes = {
     title: PropsTypes.string,
     releaseDate: PropsTypes.string
   }).isRequired,
-  onCardSelect: PropsTypes.func
-}
+  onCardSelect: PropsTypes.func,
+  isPreviewMode: PropsTypes.bool
+};

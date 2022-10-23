@@ -1,17 +1,20 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { AppRouting } from './components';
-import { ApolloProvider } from '@apollo/client';
-import { client } from './apollo';
+import { AppContextProvider } from './providers/appContext';
+
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={ client }>
-      <AppRouting/>
-    </ApolloProvider>
+    <BrowserRouter>
+      <AppContextProvider>
+        <AppRouting/>
+      </AppContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

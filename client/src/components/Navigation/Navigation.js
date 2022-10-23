@@ -16,6 +16,9 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { Settings } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import LanguageSwitcher from '../LanguageSwitcher';
+import { FormattedMessage } from 'react-intl';
+import translate from '../../utils/translate';
 
 
 const Navigation = () => {
@@ -24,6 +27,7 @@ const Navigation = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
 
   const list = () => (
     <Box sx={ { width: 250 } }
@@ -37,7 +41,7 @@ const Navigation = () => {
           <ListItemIcon>
             <Settings/>
           </ListItemIcon>
-          <ListItemText primary={ 'Settings' }/>
+          <ListItemText primary={ translate('navigation.settings') }/>
         </ListItem>
       </List>
     </Box>
@@ -58,18 +62,22 @@ const Navigation = () => {
             </IconButton>
           </Hidden>
 
-          <Typography variant="h6"
-                      to={'/'}
-                      component={ Link }
-                      sx={ { textDecoration: 'none', color: 'inherit' } }>
-            Movies recommendation
-          </Typography>
+          <Box sx={ { flexGrow: 1 } }>
+            <Typography variant="h6"
+                        to={ '/' }
+                        component={ Link }
+                        sx={ { textDecoration: 'none', color: 'inherit' } }>
+              <FormattedMessage id="navigation.home" />
+            </Typography>
+          </Box>
+
+          <LanguageSwitcher/>
 
 
           <Box sx={ { display: { xs: 'none', lg: 'flex' }, ml: 'auto' } }>
             <Link to="/settings">
               <Button sx={ { my: 2, color: 'white', display: 'block' } }>
-                Settings
+                <FormattedMessage id="navigation.settings" />
               </Button>
             </Link>
           </Box>

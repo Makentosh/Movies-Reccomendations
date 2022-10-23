@@ -19,7 +19,9 @@ const CardMenu = ({ children, ...props }) => {
     <>
       <IconButton sx={ {
         position: 'absolute',
-        top: 5, right: 5,
+        zIndex: 2,
+        top: 5,
+        right: 5,
         backgroundColor: 'rgba(255, 255, 255, .3)'
       } }
                   onClick={ handleClick }>
@@ -29,6 +31,7 @@ const CardMenu = ({ children, ...props }) => {
       <Menu anchorEl={ anchorEl }
             open={ open }
             onClose={ handleClose }
+            onClick={ handleClose }
             transformOrigin={ { horizontal: 'right', vertical: 'top' } }
             anchorOrigin={ { horizontal: 'right', vertical: 'bottom' } }>
         { children }

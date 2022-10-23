@@ -14,5 +14,7 @@ const Template = (args) => <MovieCard {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  movie: movies[0]
+  movie: movies[0],
+  onCardSelect: () => {},
+  isPreviewMode: true
 };

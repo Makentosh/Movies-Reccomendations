@@ -5,6 +5,7 @@ module.exports = {
   ],
   'addons': [
     'storybook-addon-material-ui',
+    'storybook-addon-react-router-v6',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',

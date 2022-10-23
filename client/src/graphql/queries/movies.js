@@ -16,3 +16,14 @@ export const MOVIES = gql`
         }
     }
 `;
+
+export const MOVIES_BY_IDS = gql`
+    query GetMoviesByIds($ids: [Int]) {
+        moviesByIds(ids: $ids) {
+            id
+            posterPath
+            releaseDate
+            title
+        }
+    }
+`;

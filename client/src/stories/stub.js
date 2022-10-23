@@ -1,7 +1,7 @@
 export const movies = [
   {
     "_id": "6276dd44802ec260dafc8dbb",
-    "image": "https://www.themoviedb.org/t/p/w440_and_h660_face/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
+    "posterPath": "https://www.themoviedb.org/t/p/w440_and_h660_face/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
     "releaseDate": "2014-04-13T12:38:32-03:00",
     "title": "Poshome",
     "genres": [

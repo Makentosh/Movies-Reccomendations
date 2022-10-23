@@ -11,6 +11,7 @@ const App = () => {
 
 
       <Box sx={ {
+        minHeight: '100%',
         backgroundColor: (theme) => theme.palette.grey[100]
       } }>
         <Container maxWidth="xxl">

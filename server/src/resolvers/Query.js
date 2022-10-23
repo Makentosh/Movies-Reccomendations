@@ -1,10 +1,17 @@
-const { getPopular } = require('../modules/movies');
+const { getPopular, getDetails } = require('../modules/movies');
+const { Movie } = require('../modules/movies/entities/Movie');
 
-async function movies(parent, args) {
+async function movies(parent, args, { locale }) {
+  return await getPopular(args.page, locale);
+}
 
-  return await getPopular(args.page);
+async function moviesByIds(parent, { ids }, { locale }) {
+  const requests = ids.map((id) => getDetails(id, locale));
+  const data = await Promise.all(requests);
+  return data.map(({ data }) => new Movie(data));
 }
 
 module.exports = {
   movies,
+  moviesByIds
 };
