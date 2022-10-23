@@ -8,12 +8,11 @@ import Recommend from '../../pages/Recommend';
 import I18nProvider from '../../providers/i18n';
 import { AppContext } from '../../providers/appContext';
 
-console.log(process.env.PORT, 'port');
-console.log(window.location.origin, 'origin');
+console.log(process.env, 'forntend env')
 
 const AppRouting = () => {
   const { state } = useContext(AppContext);
-  const httpLink = new HttpLink({ uri: `${ window.location.origin }:${ process.env.PORT || 80 }/graphql` });
+  const httpLink = new HttpLink({ uri: `http://localhost:${ process.env.PORT || 80 }/graphql` });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const customHeaders = operation.getContext().hasOwnProperty('headers') ? operation.getContext().headers : {};
 
