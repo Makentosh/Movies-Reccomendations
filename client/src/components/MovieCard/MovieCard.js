@@ -3,6 +3,8 @@ import PropsTypes from 'prop-types';
 import { Box, Card, CardContent, CardMedia, styled, Typography } from '@mui/material';
 import { formatDate } from '../Tools';
 import { AddBoxOutlined } from '@mui/icons-material';
+import { useContext } from 'react';
+import { AppContext } from '../../providers/appContext';
 
 const CardInfo = styled(CardContent)(({ theme }) => ( {
   '&:last-child': {
@@ -29,6 +31,8 @@ const PlusIcon = styled(Box)(({ theme }) => ( {
 } ));
 
 const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
+  const { state } = useContext(AppContext);
+
   return (
     <Card sx={ { maxWidth: 250, position: 'relative' } }>
       <Box sx={ { position: 'relative' } }>
@@ -54,7 +58,7 @@ const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
         <Typography variant="subtitle1"
                     gutterBottom
                     component="div">
-          { formatDate(movie.releaseDate) }
+          { formatDate(movie.releaseDate, state.locale) }
         </Typography>
       </CardInfo>
     </Card>
