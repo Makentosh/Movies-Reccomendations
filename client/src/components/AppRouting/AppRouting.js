@@ -8,7 +8,7 @@ import Recommend from '../../pages/Recommend';
 import I18nProvider from '../../providers/i18n';
 import { AppContext } from '../../providers/appContext';
 
-console.log(process.env, 'forntnd env')
+console.log(process.env, 'frontend env env')
 
 const AppRouting = () => {
   const { state } = useContext(AppContext);
