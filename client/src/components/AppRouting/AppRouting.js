@@ -10,7 +10,7 @@ import { AppContext } from '../../providers/appContext';
 
 const AppRouting = () => {
   const { state } = useContext(AppContext);
-  const httpLink = new HttpLink({ uri: `http://localhost:${ process.env.PORT || 80 }/graphql` });
+  const httpLink = new HttpLink({ uri: `${ window.location.origin }/graphql` });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const customHeaders = operation.getContext().hasOwnProperty('headers') ? operation.getContext().headers : {};
 
