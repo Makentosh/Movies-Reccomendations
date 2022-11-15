@@ -2,22 +2,29 @@ import { Box, Grid, Pagination, Paper } from '@mui/material';
 import MovieCard from '../../components/MovieCard';
 import { useQuery } from '@apollo/client';
 import { MOVIES } from '../../graphql/queries/movies';
-import { useState } from 'react';
 import { useMovies } from '../../hooks/useMovies/useMovies';
 import SelectedMoviesSection from '../../components/SelectedMoviesSection';
+import Filters from '../../components/Filters';
+import { useFilters } from '../../hooks/useFilters/useFilters';
 
 const HomePage = () => {
-  const [page, setPage] = useState(1);
+  const { filter, setPage, setFilter } = useFilters();
   const { selectedMovies, selectMovie, deleteMovie, resetSelectedMovies } = useMovies();
-  const { loading, error, data } = useQuery(MOVIES, { variables: { page } });
+  const { loading, error, data } = useQuery(MOVIES, { variables: { filter } });
 
   const paginationHandler = (event, page) => {
     setPage(page);
   };
 
+  const onFilterSubmit = (data) => {
+    console.log(data);
+    setFilter(data);
+  };
+
   const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
 
   if ( loading ) return <p>Loading...</p>;
+
   if ( error ) return <p>Error :(</p>;
 
   return (
@@ -26,9 +33,7 @@ const HomePage = () => {
             spacing={ 2 }>
         <Grid item
               xs={ 12 }>
-          <Paper>
-            filters
-          </Paper>
+          <Filters onSubmit={ onFilterSubmit } initialValues={filter}/>
         </Grid>
 
         <Grid item
@@ -37,7 +42,7 @@ const HomePage = () => {
           <Paper>
             <Box sx={ { mb: 2, pt: 2, display: 'flex', justifyContent: 'center' } }>
               <Pagination count={ pagesCount }
-                          page={ page }
+                          page={ filter.page }
                           onChange={ paginationHandler }/>
             </Box>
 
@@ -56,7 +61,7 @@ const HomePage = () => {
 
             <Box sx={ { mt: 2, pb: 2, display: 'flex', justifyContent: 'center' } }>
               <Pagination count={ data?.movies?.totalPages }
-                          page={ page }
+                          page={ filter.page }
                           onChange={ paginationHandler }/>
             </Box>
           </Paper>
